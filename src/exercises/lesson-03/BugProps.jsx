@@ -11,12 +11,12 @@
 
   Use the commented "Explanation" section at the bottom of this lesson's components.
 */
-
+import { useState } from 'react';
 export default function BugProps({ name = 'friend' }) {
-  let message = 'Hello, ' + name;
+  const [message, setMessage] = useState('Hello, ' + name);
 
   function handleChange() {
-    message = 'Hi, ' + name + '!';
+    setMessage('Hi, ' + name + '!');
   }
 
   return (
@@ -29,3 +29,8 @@ export default function BugProps({ name = 'friend' }) {
 
 // Explanation:
 // (Write your explanation here)
+// React does not track changes to normal variables,
+// so updating the value does not trigger a re-render.
+// As a result, the UI does not update when the button is clicked.
+// Use useState and update the value using setMessage,
+// so React can properly re-render the component when the state changes.
