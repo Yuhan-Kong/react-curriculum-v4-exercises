@@ -7,9 +7,13 @@ export default function BugStrictMode() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    setInterval(() => {
+    const newInterval = setInterval(() => {
       setCount((c) => c + 1);
     }, 1000);
+
+    return () => {
+      clearInterval(newInterval);
+    };
   }, []);
 
   return (
@@ -21,3 +25,4 @@ export default function BugStrictMode() {
 }
 
 // Write your explanation of how StrictMode helps us catch this bug
+// Without cleanup function, the inerval is never cleared, multiple intervals are created.
